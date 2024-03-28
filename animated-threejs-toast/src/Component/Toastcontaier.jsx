@@ -5,7 +5,8 @@ import { MdError } from "react-icons/md";
 import { CiCircleInfo } from "react-icons/ci";
 import { FaXmark } from "react-icons/fa6";
 
-const ToastContainer = () => {
+const ToastContainer = ({ triggerSuccessToast }) => {
+
     const [toasts, setToasts] = useState([]);
 
     const toastDetails = {
@@ -51,6 +52,11 @@ const ToastContainer = () => {
             return prevToasts.filter(toast => toast.id !== id);
         });
     };
+    useEffect(() => {
+        if (triggerSuccessToast) {
+            createToast('success')
+        }
+    }, [triggerSuccessToast])
 
     const createToast = (id) => {
         const { icon, text, color } = toastDetails[id];
@@ -67,9 +73,6 @@ const ToastContainer = () => {
 
         setTimeout(() => removeToast(newToast.id), 5000);
     };
-    // useEffect(() => {
-    //     createToast('success')
-    // }, [])
     return (
         <div>
             <div className="notifications" style={{ position: 'fixed', top: '30px', right: '20px' }}>

@@ -1,21 +1,30 @@
-import './App.css'
-// import { Threedmodel } from './Component/Threedmodel'
-import Toastcontaier from './Component/Toastcontaier'
-import ThreeScene from './ThreeScene'
-// import { createToast } from './Component/Toastcontaier'
-const Login = () => {
-  // createToast()
-}
+// AnotherComponent.js
+import React, { useEffect, useState } from 'react';
+import ToastContainer from './Component/Toastcontaier';
 
-function App() {
+const AnotherComponent = () => {
+  const [successToastTriggered, setSuccessToastTriggered] = useState(false);
+  const login = () => {
+    try {
+      triggerSuccessToast();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const triggerSuccessToast = () => {
+    setSuccessToastTriggered(true);
+  };
+  useEffect(() => {
+    login()
+  }, [])
+
   return (
     <div>
+      <ToastContainer triggerSuccessToast={successToastTriggered} />
 
-      <Toastcontaier />
-      {/* <Threedmodel /> */}
-      {/* <ThreeScene message={"HELLO"} /> */}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default AnotherComponent;
