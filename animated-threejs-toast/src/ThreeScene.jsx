@@ -80,7 +80,7 @@ export default ThreeScene;
 
 
 const notifications = document.querySelector(".notifications"),
-buttons = document.querySelectorAll(".buttons .btn");
+    buttons = document.querySelectorAll(".buttons .btn");
 
 // Object containing details for different types of toasts
 const toastDetails = {
@@ -105,7 +105,7 @@ const toastDetails = {
 
 const removeToast = (toast) => {
     toast.classList.add("hide");
-    if(toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
+    if (toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
     setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
 }
 

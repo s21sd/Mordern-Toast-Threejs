@@ -30,9 +30,23 @@ const ToastContainer = () => {
             color: 'var(--info)'
         }
     };
+    const createSuccessToast = () => {
+        createToast('success');
+    };
+
+    const createErrorToast = () => {
+        createToast('error');
+    };
+
+    const createWarningToast = () => {
+        createToast('warning');
+    };
+
+    const createInfoToast = () => {
+        createToast('info');
+    };
 
     const removeToast = (id) => {
-        console.log(id)
         setToasts((prevToasts) => {
             return prevToasts.filter(toast => toast.id !== id);
         });
@@ -57,23 +71,20 @@ const ToastContainer = () => {
     //     createToast('success')
     // }, [])
     return (
-
         <div>
             <div className="notifications" style={{ position: 'fixed', top: '30px', right: '20px' }}>
-                {
-                    toasts.map((toast, index) => (
-                        <div key={index} className={`toast ${toast.id}`} style={{ width: '400px', position: 'relative', overflow: 'hidden', listStyle: 'none', borderRadius: '4px', padding: '16px 17px', marginBottom: '10px', background: toast.color, justifyContent: 'space-between', animation: 'show_toast 0.3s ease forwards' }}>
-                            <div className="column" style={{ display: 'flex', alignItems: 'center' }}>
-                                <div>
-                                    {toast.icon}
-                                </div>
-                                <span style={{ fontSize: '1.07rem', marginLeft: '12px', color: 'white' }}>{toast.text}</span>
+                {toasts.map((toast, index) => (
+                    <div key={index} className={`toast ${toast.id}`} style={{ width: '400px', position: 'relative', overflow: 'hidden', listStyle: 'none', borderRadius: '4px', padding: '16px 17px', marginBottom: '10px', background: toast.color, justifyContent: 'space-between', animation: 'show_toast 0.3s ease forwards' }}>
+                        <div className="column" style={{ display: 'flex', alignItems: 'center' }}>
+                            <div>
+                                {toast.icon}
                             </div>
-                            <FaXmark size={20} className="fa-solid fa-xmark" style={{ color: 'white', cursor: 'pointer' }} onClick={() => removeToast(toast.id)} />
-                            <div style={{ position: 'absolute', content: '', height: '4px', width: '100%', bottom: '0px', left: '0px', animation: 'progress 5s linear forwards', background: 'var(--light)' }}></div>
+                            <span style={{ fontSize: '1.07rem', marginLeft: '12px', color: 'white' }}>{toast.text}</span>
                         </div>
-                    ))
-                }
+                        <FaXmark size={20} className="fa-solid fa-xmark" style={{ color: 'white', cursor: 'pointer' }} onClick={() => removeToast(toast.id)} />
+                        <div style={{ position: 'absolute', content: '', height: '4px', width: '100%', bottom: '0px', left: '0px', animation: 'progress 5s linear forwards', background: 'var(--light)' }}></div>
+                    </div>
+                ))}
             </div>
             <div className="buttons">
                 <button className="btn" id="success" onClick={() => createToast('success')}>Success</button>
